@@ -26,6 +26,8 @@ class WhisperModel(faster_whisper.WhisperModel):
     '''
     FasterWhisperModel provides batched inference for faster-whisper.
     Currently only works in non-timestamp mode and fixed prompt for all samples in batch.
+
+    TODO: use native faster_whisper batching in v1.1
     '''
 
     def generate_segment_batched(self, features: np.ndarray, tokenizer: faster_whisper.tokenizer.Tokenizer, options: faster_whisper.transcribe.TranscriptionOptions, encoder_output = None):
@@ -323,6 +325,8 @@ def load_model(whisper_arch,
         "max_new_tokens": None,
         "clip_timestamps": None,
         "hallucination_silence_threshold": None,
+        "multilingual": False,
+        "hotwords": None,
     }
 
     if asr_options is not None:
